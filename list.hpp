@@ -14,6 +14,8 @@ public:
 	list();
 	~list();
 public:
+	list(list<ElementType>& src);
+public:
 	//Array function
 	ElementType* Array();
 	void load(ElementType* base, unsigned long num_of_element);

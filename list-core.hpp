@@ -12,7 +12,7 @@ public:
 		Node* Pre;
 		Node* Next;
 	};
-private:
+protected:
 	//Fast_operation
 	/*
 	Node* Insert_prediction_node;
@@ -22,14 +22,14 @@ private:
 	unsigned long Delete_prediction_i;
 	unsigned long Query_prediction_i;
 	*/
-private:
+protected:
 	Node* Header;
 	unsigned long len;
 public:
 	list_core();
 	virtual ~list_core();
 public:
-	list_core(const list_core& src);
+	list_core(list_core<ElementType>& src);
 public:
 	//basic_operation
 	void Insert(ElementType& element, unsigned long position); // Insert at position (example: l = {2,3} l.insert(-1,0) -> l = {-1,2,3} )

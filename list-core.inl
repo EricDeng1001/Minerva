@@ -10,19 +10,21 @@ __init__(){
 	//an extension need consider
 	ElementType tmp;
 	Header->element = tmp;
-	//
+	//--------
 	len = 0;
 	//fast_operation
 	
 }
 
-__init__(const list_core& src){
+__init__(list_core<ElementType>& src){
 	Header = new Node;
+	Header->Next = Header;
+	Header->Pre = Header;
 	loop(src.len){
-		this->Append(src.Query[i]);
+		Append(src.Query(i));
 	}
-	//fast_operation
-	
+	len = src.len;
+	//fast_operation	
 }
 
 __des__(){
@@ -196,6 +198,7 @@ MF(void) Clear(){
 		tmp = f;
 	}
 	Header->Next = Header->Pre = Header;
+	len = 0;
 }
 
 

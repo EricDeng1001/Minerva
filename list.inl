@@ -9,6 +9,11 @@ __init__(){
 	hide_array_ptr = nullptr;
 }
 
+__init__(list<ElementType>& src):list_core<ElementType>(src){
+	updated = false;
+	hide_array_ptr = nullptr;
+}
+
 __des__(){
 	delete [] hide_array_ptr;
 }
@@ -16,15 +21,15 @@ __des__(){
 MF(unsigned long) Alloc(unsigned long num_of_element)
 {
 	typename list_core<ElementType>::Node* New;
-	unsigned ret = list_core<ElementType>::len;
+	unsigned ret = this->len;
 	loop(num_of_element) {
 		New = new typename list_core<ElementType>::Node;
-		New->Pre = list_core<ElementType>::Header->Pre;
-		New->Next = list_core<ElementType>::Header;
-		list_core<ElementType>::Header->Pre->Next = New;
-		list_core<ElementType>::Header->Pre = New;
+		New->Pre = this->Header->Pre;
+		New->Next = this->Header;
+		this->Header->Pre->Next = New;
+		this->Header->Pre = New;
 	}
-	list_core<ElementType>::len += num_of_element;
+	this->len += num_of_element;
 	updated = true;
 	return ret;
 }
@@ -34,9 +39,9 @@ MF(ElementType*) Array()
 	if (updated) {
 		updated = false;
 		delete [] hide_array_ptr;
-		hide_array_ptr = new ElementType[list_core<ElementType>::len];
-		typename list_core<ElementType>::Node* tmp = list_core<ElementType>::Header->Next;
-		loop(list_core<ElementType>::len) {
+		hide_array_ptr = new ElementType[this->len];
+		typename list_core<ElementType>::Node* tmp = this->Header->Next;
+		loop(this->len) {
 			hide_array_ptr[i] = tmp->element;
 			tmp = tmp->Next;
 		}
@@ -46,15 +51,15 @@ MF(ElementType*) Array()
 
 MF(void) load(ElementType* base, unsigned long num_of_element)
 {
-	list_core<ElementType>::Clear();
-	list_core<ElementType>::Append(base, num_of_element);
+	this->Clear();
+	this->Append(base, num_of_element);
 	updated = true;
 }
 
 MF(ElementType&) operator [] (unsigned long position)
 {
 	typename list_core<ElementType>::Node* tmp;
-	tmp = list_core<ElementType>::Header->Next;
+	tmp = this->Header->Next;
 	loop(position) {
 		tmp = tmp->Next;
 	}
