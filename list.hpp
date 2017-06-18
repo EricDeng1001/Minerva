@@ -16,6 +16,8 @@ public:
 public:
 	list(list<ElementType>& src);
 public:
+	void operator = (list<ElementType>& src);
+public:
 	//Array function
 	ElementType* Array();
 	void load(ElementType* base, unsigned long num_of_element);

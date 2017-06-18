@@ -31,6 +31,8 @@ public:
 public:
 	list_core(list_core<ElementType>& src);
 public:
+	void operator = (list_core<ElementType>& src);
+public:
 	//basic_operation
 	void Insert(ElementType& element, unsigned long position); // Insert at position (example: l = {2,3} l.insert(-1,0) -> l = {-1,2,3} )
 	ElementType Query(unsigned long position);

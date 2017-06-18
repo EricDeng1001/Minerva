@@ -18,6 +18,13 @@ __des__(){
 	delete [] hide_array_ptr;
 }
 
+MF(void) operator = (list<ElementType>& src){
+	list_core<ElementType>::operator=(src);
+	delete [] hide_array_ptr;
+	hide_array_ptr = nullptr;
+	updated = true;
+}
+
 MF(unsigned long) Alloc(unsigned long num_of_element)
 {
 	typename list_core<ElementType>::Node* New;

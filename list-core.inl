@@ -18,6 +18,7 @@ __init__(){
 
 __init__(list_core<ElementType>& src){
 	Header = new Node;
+	Header->element = src.Header->element;
 	Header->Next = Header;
 	Header->Pre = Header;
 	loop(src.len){
@@ -37,6 +38,14 @@ __des__(){
 		tmp = tmp->Next;
 	}
 	delete left;
+}
+
+MF(void) operator = (list_core<ElementType>& src){
+	Clear();
+	loop(src.len){
+		Append(src.Query(i));
+	}
+	len = src.len;
 }
 
 MF(void) Insert(ElementType& element, unsigned long position){
@@ -209,7 +218,6 @@ MF(void) Clear(){
 
 
 }}
-
 
 
 
